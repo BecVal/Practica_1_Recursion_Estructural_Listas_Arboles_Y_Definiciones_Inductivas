@@ -120,4 +120,24 @@ dfs x (Node y a b) =
 
 -- 4.4 Estructuras Inductivas Lógicas
 
+data Formula = Atom String
+            | Neg Formula
+            | Conj Formula Formula
+            | Dis Formula Formula
+            | Impl Formula Formula
+            | Equiv Formula Formula
+            deriving (Show, Eq)
 
+{-  
+    Función profundidad: Calcula la profundidad de una fórmula lógica, que es el número máximo de niveles de anidación de operadores lógicos.
+    Caso base: Si la fórmula es un átomo, su profundidad es 0.
+    Caso recursivo: Para cada operador lógico (Neg, Conj, Dis, Impl, Equiv), sumamos 1 a la profundidad máxima de sus subfórmulas.
+-}
+
+profundidad :: Formula -> Int
+profundidad (Atom _) = 0
+profundidad (Neg f) = 1 + profundidad f
+profundidad (Conj f1 f2) = 1 + max (profundidad f1) (profundidad f2)
+profundidad (Dis f1 f2) = 1 + max (profundidad f1) (profundidad f2)
+profundidad (Impl f1 f2) = 1 + max (profundidad f1) (profundidad f2)
+profundidad (Equiv f1 f2) = 1 + max (profundidad f1) (profundidad f2)  
