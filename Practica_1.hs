@@ -34,8 +34,7 @@ reverseL listaInicial = auxiliar listaInicial Nil
     Caso base: Si ambas listas están vacías, regresamos una lista vacía.
     Caso recursivo: Si ambas listas tienen al menos un elemento.
     Caso de seguridad: Por si acaso las listas llegan a ser de diferente tamaño, 
-    detenemos el proceso devolviendo Nil (el ejercicio dice que son del mismo tamaño, 
-    pero en Haskell siempre es buena práctica cubrir todos los casos).
+    detenemos el proceso devolviendo Nil.
 -}
 zip :: (a -> b -> c) -> List a -> List b -> List c
 zip funcion Nil Nil = Nil
